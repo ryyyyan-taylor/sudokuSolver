@@ -2,29 +2,29 @@ import random
 import sys
 
 def generateSudoku(): 
-	maxAttempts = 100 #stops the program after 100 attempts
+	maxAttempts = 100
 	count = 9999
-	solCount = 0
+	solutions = 0
 
 	while count > maxAttempts:
-	    solCount +=1
+	    solutions +=1
 	    
-	    puzzle = []
+	    board = []
 	    for i in range(9):
 	        row = []
 	        for j in range(9):
 	            row.append(0)
 	        
-	        puzzle.append(row)
+	        board.append(row)
 
 	    for row in range(9):
 	        for col in range(9):
 	            
-	            thisRow=puzzle[row]
+	            thisRow=board[row]
 	            thisCol=[]
 	            
 	            for h in range(9):
-	                thisCol.append(puzzle[h][col])
+	                thisCol.append(board[h][col])
 
 	            subCol = int(col/3)
 	            subRow = int(row/3)
@@ -32,7 +32,7 @@ def generateSudoku():
 	            
 	            for subR in range (3):
 	                for subC in range (3):
-	                    subMat.append(puzzle[subRow*3 + subR][subCol*3 + subC])
+	                    subMat.append(board[subRow*3 + subR][subCol*3 + subC])
 	            
 	            randVal = 0
 	            count = 0
@@ -42,7 +42,7 @@ def generateSudoku():
 
 	                if count > maxAttempts: break 
 	            
-	            puzzle[row][col] = randVal
+	            board[row][col] = randVal
 
 	            if count > maxAttempts: break 
 	        
@@ -54,11 +54,11 @@ def generateSudoku():
 		randI = random.randint(0,8)
 		randJ = random.randint(0,8)
 		
-		if(puzzle[randI][randJ]):
-			puzzle[randI][randJ] = 0
+		if(board[randI][randJ]):
+			board[randI][randJ] = 0
 			nums -= 1
 
-	return puzzle
+	return board
 
 def printSudoku(sudoku):
 
